@@ -1,0 +1,19 @@
+<div class="person-card">
+  <div class="image-block" *ngIf="img">
+    <img [src]="img" alt="image">
+  </div>
+  <div class="info-block">
+    <div class="info-block-item">
+      <div class="heading">Name:</div>
+      <div class="item">{{name}}</div>
+    </div>
+    <div class="info-block-item">
+      <div class="heading">Last Name:</div>
+      <div class="item">{{lastName}}</div>
+    </div>
+    <div class="info-block-item">
+      <div class="heading">Age:</div>
+      <div class="item">{{age}}</div>
+    </div>
+  </div>
+</div>

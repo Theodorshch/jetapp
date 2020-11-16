@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Last Name</th>
+    <th scope="col">Age</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let person of people; index as i"
+      [ngbTooltip]="tipContent"
+      [autoClose]="true"
+      (hidden)="emitTooltipStatus(false)"
+      (shown)="emitTooltipStatus(true)"
+      triggers="click">
+    <ng-template #tipContent>
+      <app-person-card
+        [name]="person.name"
+        [lastName]="person.last_name"
+        [age]="person.age"
+        [img]="person.image_url"
+      ></app-person-card>
+    </ng-template>
+    <td>{{ person.name }}</td>
+    <td>{{ person.last_name }}</td>
+    <td>{{ person.age }}</td>
+  </tr>
+  </tbody>
+</table>
