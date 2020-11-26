@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { debounceTime, switchMap, take, tap } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { take, tap } from 'rxjs/operators';
 
 import { DataService } from './services/data.service';
 import { Person } from './models/person';
@@ -11,32 +10,20 @@ import { FormControl } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   people: Person[];
   showSpinner = false;
   timeout: number;
   amountOfPeople: FormControl = new FormControl(0);
-  amountOfPeopleSubs: Subscription;
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
-    this.amountOfPeopleSubs = this.amountOfPeople.valueChanges
-      .pipe(
-        debounceTime(500),
-        tap(() => {
-          this.showSpinner = true;
-          this.people = [];
-          this.clearTimeout();
-        }),
-        switchMap(value => this.dataService.getPeople(value)),
-        tap(value => {
-          this.showSpinner = false;
-          this.people = value;
-          this.setNewTimeout();
-        })
-      ).subscribe();
+  }
+
+  onRangeChange(): void {
+    this.getPeople();
   }
 
   getPeople(): void {
@@ -66,15 +53,11 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  onTooltipOpened(event): void {
+  onTooltipOpened(event: boolean): void {
     if (event) {
       this.clearTimeout();
     } else {
       this.setNewTimeout();
     }
-  }
-
-  ngOnDestroy(): void {
-    this.amountOfPeopleSubs.unsubscribe();
   }
 }

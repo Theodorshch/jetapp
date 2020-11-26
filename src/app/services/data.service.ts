@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { bufferCount, delay, repeat } from 'rxjs/operators';
+import { bufferCount, delay, map, repeat } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 import { ApiService } from './api.service';
@@ -18,7 +18,8 @@ export class DataService {
         .pipe(
           delay(250),
           repeat(amount),
-          bufferCount(amount)
+          bufferCount(amount),
+          map(rawResponse => Person.fromRawResponse(rawResponse))
         );
     } else {
       return of([]);

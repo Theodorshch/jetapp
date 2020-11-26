@@ -5,11 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { TableComponent } from './table/table.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { PersonCardComponent } from './person-card/person-card.component';
-import { SpinnerComponent } from './spinner/spinner.component';
+import { TableComponent } from './components/table/table.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PersonCardComponent } from './components/person-card/person-card.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [

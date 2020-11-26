@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Person } from '../models/person';
+import { Person } from '../../models/person';
 
 @Component({
   selector: 'app-table',
@@ -10,7 +10,7 @@ import { Person } from '../models/person';
 export class TableComponent {
 
   @Input() people: Person[];
-  @Output() tooltipOpened = new EventEmitter();
+  @Output() tooltipOpened = new EventEmitter<boolean>();
 
   openedTooltips = 0;
 

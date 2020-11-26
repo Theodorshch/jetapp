@@ -3,7 +3,7 @@
 <div class="page-content">
   <div class="form-group">
     <label for="formControlRange">Amount of people</label>
-    <input [formControl]="amountOfPeople" type="range" min="0" max="20" class="form-control-range" id="formControlRange">
+    <input [formControl]="amountOfPeople" (change)="onRangeChange()" type="range" min="0" max="20" class="form-control-range" id="formControlRange">
   </div>
   <app-table [people]="people" (tooltipOpened)="onTooltipOpened($event)"></app-table>
 </div>
